@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+<style id="jsbin-css">
+.block {
+  width: 50px;
+  height: 50px;
+  background-color: lime;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+body {
+  background-color: yellow;
+  height: 2000px;
+}
+</style>
+</head>
+<body><br><br>
+  <div class="block"></div>
+  <div class="block"></div>
+  <div class="block"></div>
+<script id="jsbin-javascript">
+var blocks = document.querySelectorAll('.block');
+for (var i=0; i < blocks.length; i++) {
+  blocks[i].addEventListener('mousedown', dragStart, false);
+}
+document.addEventListener('mousemove', drag, false);
+document.addEventListener('mouseup', dragEnd, false);
+document.addEventListener('selectstart', handler, false);
+document.addEventListener('dragstart', handler, false);
+
+var dragObject;
+var dragOffsetX = 0;
+var dragOffsetY = 0;
+
+function dragStart(event) {
+  event = event || window.event;
+  dragObject = event.target || event.srcElement;
+  dragOffsetX = event.offsetX;
+  dragOffsetY = event.offsetY;
+}
+
+function drag(event) {
+  event = event || window.event;
+  if (dragObject) {
+    dragObject.style.top = event.pageY - dragOffsetY + 'px';
+    dragObject.style.left = event.pageX - dragOffsetX + 'px';
+  }
+}
+
+function dragEnd(event) {
+  event = event || window.event;
+  dragObject = null;
+  dragOffsetX = 0;
+  dragOffsetY = 0;
+}
+
+function handler(event) {
+  return false;
+}
+</script>
+
+
+<script id="jsbin-source-css" type="text/css">.block {
+  width: 50px;
+  height: 50px;
+  background-color: lime;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+body {
+  background-color: yellow;
+  height: 2000px;
+}</script>
+
+<script id="jsbin-source-javascript" type="text/javascript">var blocks = document.querySelectorAll('.block');
+for (var i=0; i < blocks.length; i++) {
+  blocks[i].addEventListener('mousedown', dragStart, false);
+}
+document.addEventListener('mousemove', drag, false);
+document.addEventListener('mouseup', dragEnd, false);
+document.addEventListener('selectstart', handler, false);
+document.addEventListener('dragstart', handler, false);
+
+var dragObject;
+var dragOffsetX = 0;
+var dragOffsetY = 0;
+
+function dragStart(event) {
+  event = event || window.event;
+  dragObject = event.target || event.srcElement;
+  dragOffsetX = event.offsetX;
+  dragOffsetY = event.offsetY;
+}
+
+function drag(event) {
+  event = event || window.event;
+  if (dragObject) {
+    dragObject.style.top = event.pageY - dragOffsetY + 'px';
+    dragObject.style.left = event.pageX - dragOffsetX + 'px';
+  }
+}
+
+function dragEnd(event) {
+  event = event || window.event;
+  dragObject = null;
+  dragOffsetX = 0;
+  dragOffsetY = 0;
+}
+
+function handler(event) {
+  return false;
+}</script></body>
+</html>
